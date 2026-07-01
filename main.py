@@ -1,10 +1,20 @@
-
 import qrcode
 
-from PIL import Image
+link = input("Enter the link: ")
 
-qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=4,)
-qr.add_data("https://www.saumyadas.com.np/")
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_H,
+    box_size=10,
+    border=4
+)
+
+qr.add_data(link)
 qr.make(fit=True)
-image = qr.make_image(fill_color="black", back_color="white")
-image.save("saumya_das.png")
+
+img = qr.make_image(fill_color="black", back_color="white")
+
+filename = input("Enter file name (without .png): ")
+img.save(filename + ".png")
+
+print("QR Code generated successfully!")
